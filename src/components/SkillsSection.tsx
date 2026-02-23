@@ -5,28 +5,28 @@ const skillCategories = [
     title: "OFFENSIVE SECURITY",
     icon: "⚔️",
     skills: [
-      "Web Pentesting", "Mobile Pentesting", "API Pentesting", "Thick client Pentesting", "Red Team", "Network", "Infra", "Active Directory", "Cloud Security", "SIEM & SOC", "DAST", "SAST"
+      "AI in Pentest", "Web App VAPT (Blackbox/Whitebox)", "Mobile VAPT (Android/iOS)", "API Pentesting", "Infra VAPT", "OT VAPT (PLC/SCADA/ICS)", "Red Team", "Active Directory", "Reverse Engineering", "Cloud Security", "SIEM & SOC", "DAST", "SAST"
     ],
   },
   {
     title: "PROGRAMMING LANGUAGE",
     icon: "💻",
     skills: [
-      "GO", "RUST", "PYTHON", "JAVA", "JAVASCRIPT", "BASH", "SOLIDITY", "SMART CONTRACT", "RUBY"
+      "JavaScript", "Python", "Bash", "Go", "Java", "WordPress"
     ],
   },
   {
     title: "OS",
     icon: "💽",
     skills: [
-      "MAC", "WINDOW", "LINUX"
+      "Kali Linux", "Mac", "Windows"
     ],
   },
   {
     title: "TOOLS",
     icon: "🔧",
     skills: [
-      "BURP"
+      "BurpSuite", "Netsparker", "SQL-map", "SSL-scan", "Metasploit", "Mobexler", "Wireshark", "Drozer", "Frida", "Objection", "JADX", "MobSF", "JD-GUI", "Ghidra", "Tenable Nessus", "Nmap", "Cobalt Strike", "Bloodhound", "Checkmarx", "Fortify", "Postman", "Swagger"
     ],
   },
 ];

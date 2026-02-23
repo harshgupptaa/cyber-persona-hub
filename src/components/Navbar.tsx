@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { label: "Home", href: "#home", code: "00" },
-  { label: "Recon", href: "#about", code: "01" },
-  { label: "Arsenal", href: "#skills", code: "02" },
-  { label: "Ops", href: "#experience", code: "03" },
-  { label: "Projects", href: "#projects", code: "04" },
-  { label: "Contact", href: "#contact", code: "05" },
+  { label: "Home", href: "/#home", code: "00" },
+  { label: "Recon", href: "/#about", code: "01" },
+  { label: "Arsenal", href: "/#skills", code: "02" },
+  { label: "Ops", href: "/#experience", code: "03" },
+  { label: "Projects", href: "/#projects", code: "04" },
+  { label: "Contact", href: "/#contact", code: "05" },
+  { label: "Certificates", href: "/certificates", code: "06" }, // Added certificates route
 ];
 
 const Navbar = () => {
@@ -15,26 +17,54 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
-      // Detect active section
-      const sections = navItems.map((n) => n.href.substring(1));
+      if (location.pathname !== "/") return;
+
+      const sections = navItems.filter(n => n.href.startsWith("/#")).map((n) => n.href.substring(2));
       for (const id of sections.reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 150) {
-          setActiveSection(`#${id}`);
+          setActiveSection(`/#${id}`);
           break;
         }
       }
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [location.pathname]);
 
-  const handleClick = (href: string) => {
+  useEffect(() => {
+    // If we land on a hash route, scroll to it
+    if (location.hash && location.pathname === "/") {
+      setTimeout(() => {
+        document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+    // Set active section for notes
+    if (location.pathname === "/notes") {
+      setActiveSection("/notes");
+    }
+  }, [location]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const targetHash = href.substring(1);
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          document.querySelector(targetHash)?.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      } else {
+        document.querySelector(targetHash)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -42,17 +72,16 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "py-2 bg-background/95 shadow-[0_0_30px_hsl(var(--primary)/0.1)]"
-          : "py-4 bg-transparent"
-      } backdrop-blur-xl border-b border-primary/10`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+        ? "py-2 bg-background/95 shadow-[0_0_30px_hsl(var(--primary)/0.1)]"
+        : "py-4 bg-transparent"
+        } backdrop-blur-xl border-b border-primary/10`}
     >
       <div className="container mx-auto flex items-center justify-between px-6 max-w-7xl">
         {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => { e.preventDefault(); handleClick("#home"); }}
+        <Link
+          to="/"
+          onClick={(e) => { handleClick(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/#home"); }}
           className="group flex items-center gap-2 magnetic-hover"
         >
           <div className="w-8 h-8 border border-primary/50 flex items-center justify-center font-display text-xs text-primary glow-border">
@@ -61,20 +90,19 @@ const Navbar = () => {
           <span className="font-display text-sm tracking-[0.3em] text-primary text-glow hidden sm:block">
             HARSH_GUPTA
           </span>
-        </a>
+        </Link>
 
         {/* Desktop */}
         <ul className="hidden md:flex items-center gap-0">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a
-                href={item.href}
-                onClick={(e) => { e.preventDefault(); handleClick(item.href); }}
-                className={`group relative px-4 py-2 text-sm font-mono transition-all duration-300 magnetic-hover ${
-                  activeSection === item.href
-                    ? "text-primary text-glow"
-                    : "text-muted-foreground hover:text-primary"
-                }`}
+              <Link
+                to={item.href}
+                onClick={(e) => handleClick(e, item.href)}
+                className={`group relative px-4 py-2 text-sm font-mono transition-all duration-300 magnetic-hover ${activeSection === item.href
+                  ? "text-primary text-glow"
+                  : "text-muted-foreground hover:text-primary"
+                  }`}
               >
                 <span className="text-primary/50 text-xs mr-1">{item.code}.</span>
                 {item.label}
@@ -85,7 +113,7 @@ const Navbar = () => {
                     style={{ boxShadow: "0 0 10px hsl(var(--primary) / 0.5)" }}
                   />
                 )}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -123,18 +151,15 @@ const Navbar = () => {
             className="md:hidden bg-background/98 backdrop-blur-xl border-t border-primary/10 overflow-hidden"
           >
             {navItems.map((item, i) => (
-              <motion.a
+              <Link
                 key={item.href}
-                href={item.href}
-                onClick={(e) => { e.preventDefault(); handleClick(item.href); }}
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: i * 0.05 }}
+                to={item.href}
+                onClick={(e) => handleClick(e, item.href)}
                 className="flex items-center gap-3 px-6 py-4 font-mono text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all border-b border-primary/5"
               >
                 <span className="text-primary/50">[{item.code}]</span>
                 {item.label}
-              </motion.a>
+              </Link>
             ))}
           </motion.div>
         )}

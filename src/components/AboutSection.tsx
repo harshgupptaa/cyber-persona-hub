@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import AnimatedCounter from "./AnimatedCounter";
 
 const certifications = [
   "Cehv12 (certified ethical hacker)", "CAPT", "CWSE", "CRTP(certified red team professional)"
@@ -65,6 +66,9 @@ const AboutSection = () => {
                   ))}
                 </div>
               </div>
+
+              {/* LinkedIn Followers Animated Counter */}
+              <AnimatedCounter end={17000} duration={3000} label="LinkedIn Followers" />
             </div>
           </motion.div>
 

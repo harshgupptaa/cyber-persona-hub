@@ -1,20 +1,81 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import CyberScene from "./CyberScene";
 
 const typingTexts = [
   "Ethical Hacker",
-  "Penetration Tester", 
+  "Penetration Tester",
   "Red Team Operator",
   "Bug Bounty Hunter",
   "Security Researcher",
   "VAPT Specialist",
 ];
 
+const AnimatedStat = ({ end, label, delay = 0, suffix = "" }: { end: number, label: string, delay?: number, suffix?: string }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const duration = 2000;
+    let animationFrame: number;
+
+    const beginAnimation = () => {
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+        setCount(Math.floor(easeOutQuad * end));
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(step);
+        } else {
+          setCount(end);
+        }
+      };
+      animationFrame = requestAnimationFrame(step);
+    };
+
+    const timeoutFrame = setTimeout(beginAnimation, delay * 1000);
+
+    return () => {
+      clearTimeout(timeoutFrame);
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
+  }, [end, delay]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className="text-center"
+    >
+      <div className="font-display text-3xl sm:text-4xl font-bold text-primary text-glow">{count}{suffix}</div>
+      <div className="font-mono text-xs text-muted-foreground mt-1">{label}</div>
+    </motion.div>
+  );
+};
+
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [whoamiText, setWhoamiText] = useState("");
+
+  useEffect(() => {
+    const text = "whoami";
+    let i = 0;
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        i++;
+        setWhoamiText(text.substring(0, i));
+        if (i >= text.length) clearInterval(interval);
+      }, 150);
+      return () => clearInterval(interval);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const typeEffect = useCallback(() => {
     const current = typingTexts[textIndex];
@@ -67,7 +128,8 @@ const HeroSection = () => {
             <span className="text-muted-foreground">:</span>
             <span className="text-accent">~</span>
             <span className="text-muted-foreground">$ </span>
-            <span className="text-foreground">whoami</span>
+            <span className="text-foreground">{whoamiText}</span>
+            <span className="text-foreground" style={{ animation: "blink-cursor 1s infinite" }}>{whoamiText.length < 6 ? "█" : ""}</span>
           </span>
         </motion.div>
 
@@ -107,10 +169,10 @@ const HeroSection = () => {
           transition={{ delay: 1 }}
           className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-light"
         >
-          Breaking systems to make them stronger. 4+ years dismantling vulnerabilities across 
-          <span className="text-primary"> web apps</span>, 
-          <span className="text-secondary"> APIs</span>, 
-          <span className="text-accent"> cloud infrastructure</span> & 
+          Breaking systems to make them stronger. 4+ years dismantling vulnerabilities across
+          <span className="text-primary"> web apps</span>,
+          <span className="text-secondary"> APIs</span>,
+          <span className="text-accent"> cloud infrastructure</span> &
           <span className="text-primary"> mobile platforms</span>.
         </motion.p>
 
@@ -147,6 +209,13 @@ const HeroSection = () => {
             <span className="relative z-10">Bug Bounty</span>
             <div className="absolute inset-0 bg-accent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </a>
+          <Link
+            to="/certificates"
+            className="magnetic-hover group relative px-8 py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-primary/80 text-primary hover:text-primary-foreground transition-colors duration-500"
+          >
+            <span className="relative z-10">Certificates</span>
+            <div className="absolute inset-0 bg-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+          </Link>
         </motion.div>
 
         {/* Stats bar */}
@@ -156,23 +225,10 @@ const HeroSection = () => {
           transition={{ delay: 1.5 }}
           className="mt-16 flex flex-wrap justify-center gap-8 sm:gap-12"
         >
-          {[
-            { value: "4+", label: "Years Experience" },
-            { value: "1000+", label: "Vulnerabilities Found" },
-            { value: "600+", label: "Projects Secured" },
-            { value: "2", label: "CVEs Published" },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6 + i * 0.1 }}
-              className="text-center"
-            >
-              <div className="font-display text-3xl sm:text-4xl font-bold text-primary text-glow">{stat.value}</div>
-              <div className="font-mono text-xs text-muted-foreground mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
+          <AnimatedStat end={4} label="Years Experience" delay={1.6} suffix="+" />
+          <AnimatedStat end={1000} label="Vulnerabilities Found" delay={1.7} suffix="+" />
+          <AnimatedStat end={600} label="Projects Secured" delay={1.8} suffix="+" />
+          <AnimatedStat end={2} label="CVEs Published" delay={1.9} suffix="" />
         </motion.div>
       </div>
 
