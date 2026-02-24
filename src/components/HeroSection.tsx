@@ -51,7 +51,7 @@ const AnimatedStat = ({ end, label, delay = 0, suffix = "" }: { end: number, lab
       transition={{ delay }}
       className="text-center"
     >
-      <div className="font-display text-3xl sm:text-4xl font-bold text-primary text-glow">{count}{suffix}</div>
+      <div className="font-display text-4xl sm:text-5xl font-bold text-primary text-glow">{count}{suffix}</div>
       <div className="font-mono text-xs text-muted-foreground mt-1">{label}</div>
     </motion.div>
   );
@@ -100,7 +100,7 @@ const HeroSection = () => {
   }, [typeEffect, isDeleting]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden scanlines">
+    <section id="home" className="relative min-h-[100dvh] pt-20 md:pt-0 flex items-center justify-center overflow-hidden scanlines">
       <CyberScene />
 
       {/* Grid overlay */}
@@ -115,13 +115,13 @@ const HeroSection = () => {
       {/* Radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(150_30%_8%)_0%,_hsl(var(--background))_70%)] z-[1]" />
 
-      <div className="relative z-10 text-center max-w-5xl px-6">
+      <div className="relative z-10 text-center w-full max-w-5xl px-4 md:px-6">
         {/* Terminal prompt */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="terminal-window inline-block mb-8 mt-16 px-6 py-3"
+          className="terminal-window inline-block mb-6 md:mb-8 mt-12 md:mt-16 px-4 md:px-6 py-2 md:py-3 max-w-full overflow-hidden"
         >
           <span className="font-mono text-primary text-sm">
             <span className="text-secondary">root@kali</span>
@@ -137,7 +137,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-5xl sm:text-7xl lg:text-9xl font-display font-black mb-4 tracking-tight"
+          className="text-6xl sm:text-7xl lg:text-9xl font-display font-black mb-4 tracking-tight leading-none"
         >
           <span className="text-gradient-hero block" style={{ animation: "glitch-skew 10s infinite linear alternate" }}>
             HARSH
@@ -167,7 +167,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-light"
+          className="text-base sm:text-xl text-muted-foreground mb-8 md:mb-10 max-w-2xl mx-auto font-light px-2"
         >
           Breaking systems to make them stronger. 4+ years dismantling vulnerabilities across
           <span className="text-primary"> web apps</span>,
@@ -181,12 +181,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="flex flex-wrap gap-4 justify-center"
+          className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center w-full"
         >
           <a
             href="#projects"
             onClick={(e) => { e.preventDefault(); document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="magnetic-hover group relative px-8 py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-primary text-primary hover:text-primary-foreground transition-colors duration-500"
+            className="w-full sm:w-auto text-center magnetic-hover group relative px-8 py-4 sm:py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-primary text-primary hover:text-primary-foreground transition-colors duration-500"
           >
             <span className="relative z-10">Explore Projects</span>
             <div className="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -195,7 +195,7 @@ const HeroSection = () => {
             href="https://medium.com/@harshharshgupta4646"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-hover group relative px-8 py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-secondary text-secondary hover:text-secondary-foreground transition-colors duration-500"
+            className="w-full sm:w-auto text-center magnetic-hover group relative px-8 py-4 sm:py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-secondary text-secondary hover:text-secondary-foreground transition-colors duration-500"
           >
             <span className="relative z-10">Read Blog</span>
             <div className="absolute inset-0 bg-secondary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -204,14 +204,14 @@ const HeroSection = () => {
             href="https://bugbounty.harshpentest.in/"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-hover group relative px-8 py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-accent/50 text-accent hover:text-accent-foreground transition-colors duration-500"
+            className="w-full sm:w-auto text-center magnetic-hover group relative px-8 py-4 sm:py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-accent/50 text-accent hover:text-accent-foreground transition-colors duration-500"
           >
             <span className="relative z-10">Bug Bounty</span>
             <div className="absolute inset-0 bg-accent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </a>
           <Link
             to="/certificates"
-            className="magnetic-hover group relative px-8 py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-primary/80 text-primary hover:text-primary-foreground transition-colors duration-500"
+            className="w-full sm:w-auto text-center magnetic-hover group relative px-8 py-4 sm:py-3 font-display text-sm tracking-wider uppercase overflow-hidden border border-primary/80 text-primary hover:text-primary-foreground transition-colors duration-500"
           >
             <span className="relative z-10">Certificates</span>
             <div className="absolute inset-0 bg-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -223,7 +223,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="mt-16 flex flex-wrap justify-center gap-8 sm:gap-12"
+          className="mt-12 md:mt-16 grid grid-cols-2 md:flex justify-center gap-6 sm:gap-12"
         >
           <AnimatedStat end={4} label="Years Experience" delay={1.6} suffix="+" />
           <AnimatedStat end={1000} label="Vulnerabilities Found" delay={1.7} suffix="+" />

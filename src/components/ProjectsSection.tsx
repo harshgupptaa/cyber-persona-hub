@@ -61,18 +61,18 @@ const statusColors: Record<string, string> = {
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-28 relative overflow-hidden">
+    <section id="projects" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
-      <div className="container mx-auto px-6 max-w-7xl relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Section 04]</span>
-          <h2 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
+          <h2 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
             EXPLOIT LAB
           </h2>
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-4" />
@@ -81,7 +81,7 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p, i) => (
             <motion.div
               key={p.title}
@@ -122,7 +122,7 @@ const ProjectsSection = () => {
                     href={p.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="magnetic-hover font-mono text-xs text-primary hover:text-glow transition-all duration-300 flex items-center gap-1"
+                    className="magnetic-hover font-mono text-xs text-primary hover:text-glow transition-all duration-300 flex items-center gap-1 py-2 md:py-1 px-1"
                   >
                     <span>[</span>Source<span>]</span>
                   </a>
@@ -130,7 +130,7 @@ const ProjectsSection = () => {
                     href={p.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="magnetic-hover font-mono text-xs text-secondary hover:text-glow-cyan transition-all duration-300 flex items-center gap-1"
+                    className="magnetic-hover font-mono text-xs text-secondary hover:text-glow-cyan transition-all duration-300 flex items-center gap-1 py-2 md:py-1 px-1"
                   >
                     <span>[</span>Details<span>]</span>
                   </a>
@@ -150,7 +150,7 @@ const ProjectsSection = () => {
             href="https://github.com/harshgupptaa"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-hover group relative inline-block px-10 py-4 font-display text-sm tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
+            className="magnetic-hover group relative w-full sm:w-auto text-center inline-block px-10 py-4 font-display text-sm tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
           >
             <span className="relative z-10">View All Repositories</span>
             <div className="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />

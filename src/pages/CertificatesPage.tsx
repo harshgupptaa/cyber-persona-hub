@@ -62,21 +62,21 @@ const CertificatesPage = () => {
             <CursorGlow />
             <Navbar />
 
-            <main className="flex-1 container mx-auto px-6 py-32 max-w-7xl relative z-10">
+            <main className="flex-1 container mx-auto px-4 md:px-6 py-24 md:py-32 max-w-7xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-12 text-center"
+                    className="mb-8 md:mb-12 text-center"
                 >
                     <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Validation]</span>
-                    <h1 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-2">
+                    <h1 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-2">
                         CERTIFICATIONS
                     </h1>
                     <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {certificates.map((cert, index) => (
                         <motion.div
                             key={cert.id}
@@ -129,16 +129,16 @@ const CertificatesPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mt-32 mb-12 text-center"
+                    className="mt-24 md:mt-32 mb-8 md:mb-12 text-center"
                 >
                     <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Trophies]</span>
-                    <h2 className="text-3xl sm:text-5xl font-display font-black text-gradient-neon mt-4 mb-2">
+                    <h2 className="text-4xl sm:text-5xl font-display font-black text-gradient-neon mt-4 mb-2">
                         HALL OF FAME
                     </h2>
                     <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
                 </motion.div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}

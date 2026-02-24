@@ -77,7 +77,7 @@ const Navbar = () => {
         : "py-4 bg-transparent"
         } backdrop-blur-xl border-b border-primary/10`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 max-w-7xl">
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6 max-w-7xl">
         {/* Logo */}
         <Link
           to="/"
@@ -120,7 +120,7 @@ const Navbar = () => {
 
         {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 magnetic-hover p-2"
+          className="md:hidden flex flex-col gap-1.5 magnetic-hover p-3 md:p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -155,7 +155,7 @@ const Navbar = () => {
                 key={item.href}
                 to={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className="flex items-center gap-3 px-6 py-4 font-mono text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all border-b border-primary/5"
+                className="flex items-center gap-3 px-6 py-5 font-mono text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all border-b border-primary/5"
               >
                 <span className="text-primary/50">[{item.code}]</span>
                 {item.label}

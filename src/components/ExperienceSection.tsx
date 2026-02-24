@@ -43,18 +43,18 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-28 relative overflow-hidden">
+    <section id="experience" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-      <div className="container mx-auto px-6 max-w-5xl relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-5xl relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Section 03]</span>
-          <h2 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
+          <h2 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
             OPERATIONS LOG
           </h2>
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -71,7 +71,7 @@ const ExperienceSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.2 }}
-              className="relative pl-16 md:pl-20 mb-16 last:mb-0"
+              className="relative pl-12 md:pl-20 mb-12 md:mb-16 last:mb-0"
             >
               {/* Dot */}
               <div
@@ -85,14 +85,14 @@ const ExperienceSection = () => {
 
               <motion.div
                 whileHover={{ x: 8, transition: { duration: 0.3 } }}
-                className="bg-glass border border-primary/10 p-6 hover:border-primary/30 hover:shadow-[0_0_30px_hsl(var(--primary)/0.08)] transition-all duration-500"
+                className="bg-glass border border-primary/10 p-5 md:p-6 hover:border-primary/30 hover:shadow-[0_0_30px_hsl(var(--primary)/0.08)] transition-all duration-500"
               >
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className="font-mono text-xs text-primary tracking-wider">{exp.date}</span>
                   <span className="w-1 h-1 bg-primary/40 rounded-full" />
                   <span className="text-xs text-muted-foreground">{exp.company}</span>
                 </div>
-                <h3 className="text-xl font-display font-bold text-foreground mb-2">{exp.title}</h3>
+                <h3 className="text-lg md:text-xl font-display font-bold text-foreground mb-2">{exp.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{exp.description}</p>
                 <ul className="space-y-2 mb-4">
                   {exp.bullets.map((b, j) => (

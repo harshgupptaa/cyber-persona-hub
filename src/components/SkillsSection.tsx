@@ -33,24 +33,24 @@ const skillCategories = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-28 relative overflow-hidden">
+    <section id="skills" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="container mx-auto px-6 max-w-7xl relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Section 02]</span>
-          <h2 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
+          <h2 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
             TECHNICAL ARSENAL
           </h2>
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {skillCategories.map((cat, catIdx) => (
             <motion.div
               key={cat.title}
@@ -59,7 +59,7 @@ const SkillsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: catIdx * 0.15 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-glass border border-primary/10 p-6 hover:border-primary/40 hover:shadow-[0_0_40px_hsl(var(--primary)/0.1)] transition-all duration-500"
+              className="bg-glass border border-primary/10 p-5 md:p-6 hover:border-primary/40 hover:shadow-[0_0_40px_hsl(var(--primary)/0.1)] transition-all duration-500"
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-2xl">{cat.icon}</span>

@@ -10,8 +10,8 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-primary/10 py-10 relative">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <footer className="border-t border-primary/10 py-8 md:py-10 relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <motion.div
             initial={{ opacity: 0 }}
@@ -34,7 +34,7 @@ const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors magnetic-hover"
+                className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors magnetic-hover px-2 py-1"
               >
                 {link.label}
               </a>

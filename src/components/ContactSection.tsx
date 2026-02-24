@@ -17,18 +17,18 @@ const socials = [
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-28 relative overflow-hidden">
+    <section id="contact" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-      <div className="container mx-auto px-6 max-w-5xl relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-5xl relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Section 05]</span>
-          <h2 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
+          <h2 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
             ESTABLISH CONTACT
           </h2>
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-4" />
@@ -38,7 +38,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Contact cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 md:mb-16">
           {contactCards.map((card, i) => (
             <motion.div
               key={card.title}
@@ -65,19 +65,19 @@ const ContactSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="terminal-window p-8 text-center mb-16"
+          className="terminal-window p-6 md:p-8 text-center mb-12 md:mb-16 w-full"
         >
           <div className="font-mono text-sm text-primary/60 mb-4">
             // Ready to secure your digital assets?
           </div>
-          <h3 className="text-2xl font-display font-bold text-foreground mb-6">
+          <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
             Let's Build Something <span className="text-primary text-glow">Unbreakable</span>
           </h3>
           <a
             href="https://forms.gle/Zj6nsyoPUHZhGyUG7"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-hover group relative inline-block px-10 py-4 font-display text-sm tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
+            className="magnetic-hover group relative w-full sm:w-auto text-center inline-block px-10 py-4 font-display text-sm tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
           >
             <span className="relative z-10">Initiate Contact</span>
             <div className="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -99,7 +99,7 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
                 whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className="magnetic-hover px-4 py-2 font-mono text-xs border border-primary/20 text-primary/70 hover:text-primary hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.15)] transition-all duration-300"
+                className="magnetic-hover px-4 py-3 md:py-2 font-mono text-xs border border-primary/20 text-primary/70 hover:text-primary hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.15)] transition-all duration-300"
               >
                 {s.label}
               </motion.a>

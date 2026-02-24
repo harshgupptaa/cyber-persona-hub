@@ -14,31 +14,31 @@ const infoItems = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-28 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-      <div className="container mx-auto px-6 max-w-7xl relative">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <span className="font-mono text-primary/60 text-xs tracking-[0.5em] uppercase">[Section 01]</span>
-          <h2 className="text-4xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
+          <h2 className="text-5xl sm:text-6xl font-display font-black text-gradient-neon mt-4 mb-4">
             RECONNAISSANCE
           </h2>
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:items-start">
           {/* Terminal-style info card */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="terminal-window"
+            className="terminal-window w-full overflow-hidden"
           >
             <div className="p-6 font-mono text-sm space-y-2">
               <div className="text-primary/60 mb-4">// Target profile scan results</div>
@@ -80,10 +80,10 @@ const AboutSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
           >
-            <h3 className="text-3xl font-display font-bold text-foreground">
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground">
               Offensive Security <span className="text-primary text-glow">Specialist</span>
             </h3>
-            <p className="text-muted-foreground leading-relaxed text-lg">
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
               I operate at the intersection of <span className="text-primary">offense and defense</span>. With 4+ years of hands-on experience in Vulnerability Assessment and Penetration Testing, I've secured critical infrastructure for government agencies and major airlines.
             </p>
             <p className="text-muted-foreground leading-relaxed">
@@ -93,12 +93,12 @@ const AboutSection = () => {
               Currently working as an <span className="text-secondary">Application Security Engineer</span>, where I lead security assessments across web, mobile, API, and network infrastructure — collaborating with DevSecOps teams to harden mission-critical systems.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4 w-full">
               <a
                 href="https://www.linkedin.com/in/harshguppta/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="magnetic-hover group relative px-6 py-3 font-display text-xs tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
+                className="w-full sm:w-auto text-center magnetic-hover group relative px-6 py-4 sm:py-3 font-display text-xs tracking-wider uppercase border border-primary text-primary hover:text-primary-foreground transition-colors duration-500 overflow-hidden"
               >
                 <span className="relative z-10">LinkedIn Profile</span>
                 <div className="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -107,7 +107,7 @@ const AboutSection = () => {
                 href="https://github.com/harshgupptaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="magnetic-hover group relative px-6 py-3 font-display text-xs tracking-wider uppercase border border-secondary/50 text-secondary hover:text-secondary-foreground transition-colors duration-500 overflow-hidden"
+                className="w-full sm:w-auto text-center magnetic-hover group relative px-6 py-4 sm:py-3 font-display text-xs tracking-wider uppercase border border-secondary/50 text-secondary hover:text-secondary-foreground transition-colors duration-500 overflow-hidden"
               >
                 <span className="relative z-10">GitHub</span>
                 <div className="absolute inset-0 bg-secondary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
